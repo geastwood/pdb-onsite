@@ -1,4 +1,4 @@
-{
+export default {
   "Structural variants": {
     "weight": "217",
     "type": "1",
@@ -1238,4 +1238,4 @@
       }
     ]
   }
-}
+};
