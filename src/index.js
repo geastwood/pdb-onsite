@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch';
 
-var connect = (src, fn) => {
+var loadSript = (src, fn) => {
   var script = document.createElement('script');
   script.type = 'text\/javascript';
 
@@ -8,6 +8,7 @@ var connect = (src, fn) => {
   document.body.appendChild(script);
   script.src = src;
 };
+
 var render = (el, markup) => {
   var domEl = document.getElementById(el);
   domEl.innerHTML = markup;
@@ -19,7 +20,7 @@ export var request = key => {
     .then(json => {
       render('markup', json.markup);
       if (!window.PdbConnect) {
-        connect('http://localhost:3000/javascripts/initializer.js', function() {
+        loadSript('http://localhost:3000/javascripts/initializer.js', function() {
           PdbConnect.init();
         });
       } else {
@@ -27,5 +28,3 @@ export var request = key => {
       }
     });
 };
-
-
