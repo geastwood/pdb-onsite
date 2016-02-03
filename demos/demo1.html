@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+  <script src="https://code.jquery.com/jquery-2.2.0.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+  <div class="row">
+    <div class="well">
+      <h2>Introduction</h2>
+      <ul>
+        <li>This is a demo page showing the implementation of generating a list of related terms with a specified keyword.</li>
+        <li>This page assumes that hosting website include <i><b>pdb-onsite</b></i> js</li>
+        <li>The only resource hosting website needs is the onsite js</li>
+      </ul>
+      <h2>Features</h2>
+      <ol>
+        <li>support customization of a tag</li>
+        <li>support dynamic generation of related term list</li>
+        <li>support rich HTML e.g. tooltip</li>
+      </ol>
+      <h2>Todos</h2>
+      <ol>
+        <li>provide support on style customization</li>
+        <li>provide css hooks for more customization</li>
+        <li>manage dependencies. e.g. jQuery and Bootstrap in this case</li>
+      </ol>
+    </div>
+  </div>
+  <hr>
+  <form>
+    <input type="text" placeholder="type to search">
+    <button class="btn" id="search">Search</button>
+  </form>
+  <div id="markup"></div>
+</div>
+
+<script src="../dist/pdb.js"></script>
+<script>
+  var PdbOnsiteConfig = {
+    rewriteLink: true,
+    rewriteLinkFn: function(name) {
+      return 'dummy/' + encodeURIComponent(name);
+    }
+  };
+</script>
+<script>
+  var handler = function(ev) {
+    Pdb.request($('[type="text"]').val());
+    ev.preventDefault();
+  };
+
+  $('#search').click(handler);
+  $('form').submit(handler);
+</script>
+</body>
+</html>
